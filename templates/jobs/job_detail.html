@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <title>{{ job.title }} at {{ job.company_name }} | Remote Jobs</title>
+
+  <meta name="description"
+        content="Apply for {{ job.title }} at {{ job.company_name }}. {{ job.candidate_required_location }}. {{ job.job_type }}. Salary: {{ job.salary }}">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="{{ request.build_absolute_uri }}">
+</head>
+<body>
+
+<article class="job-card">
+  <h1>{{ job.title }}</h1>
+  <h3>{{ job.company_name }}</h3>
+
+  <p>📍 {{ job.candidate_required_location }}</p>
+  <p>🕒 {{ job.job_type }}</p>
+  <p>💰 {{ job.salary }}</p>
+  <p>📅 Posted {{ job.publication_date }}</p>
+
+  <div>
+    {{ job.description|safe }}
+  </div>
+
+  <a href="{{ job.url }}" target="_blank" class="btn">Apply Now</a>
+</article>
+
+</body>
+</html>

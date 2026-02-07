@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Jobs</title>
+
+  <link rel="stylesheet" href="{% static 'job_css/job.css' %}">
+
+  <!-- Small layout polish (safe + professional) -->
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Remote Job Listings</h1>
+    <button id="themeToggle">🌓</button>
+  </div>
+
+  {% if request.user.is_authenticated %}
+  <div class="header-right">
+    <a href="{% url 'profile' %}" class="user-box">
+      <img src="{{ request.user.profile.profile_image.url }}"
+           alt="{{ request.user.username }}">
+      <span>{{ request.user.username }}</span>
+    </a>
+
+    <form method="POST" action="{% url 'Confirm_logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="logout-btn">Logout</button>
+    </form>
+  </div>
+  {% endif %}
+</header>
+
+<section class="filters">
+  <a href="?location=Remote">🌍 Remote</a>
+  <a href="?location=Zimbabwe">🇿🇼 Zimbabwe</a>
+  <a href="?location=USA">🇺🇸 USA</a>
+  <a href="?job_type=Full-time">Full-time</a>
+  <a href="?job_type=Contract">Contract</a>
+  <a href="?tag=Python">Python</a>
+  <a href="?tag=Django">Django</a>
+</section>
+
+{% if error %}
+  <p class="error">{{ error }}</p>
+{% endif %}
+
+{% if message %}
+  <p class="message">{{ message }}</p>
+{% endif %}
+
+<section class="jobs">
+  {% for job in page_obj %}
+  <article class="job-card">
+    <div class="job-main">
+      <div class="job-header">
+        {% if job.company_logo_url %}
+          <img src="{{ job.company_logo_url }}" alt="{{ job.company_name }}" class="company-logo">
+        {% endif %}
+        <div>
+          <h3>{{ job.title }}</h3>
+          <p class="company">{{ job.company_name }}</p>
+        </div>
+      </div>
+
+      <p class="meta">📍 {{ job.candidate_required_location }}</p>
+      <p class="meta">🕒 {{ job.job_type }}</p>
+      <p class="meta">💰 {{ job.salary }}</p>
+      <p class="meta">📅 Posted: {{ job.publication_date }}</p>
+
+      <ul class="tags">
+        {% for tag in job.tags %}
+          <li>{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <a class="btn" href="{% url 'job_detail' job.id %}">View Details</a>
+  </article>
+  {% endfor %}
+</section>
+
+<div class="pagination">
+  {% if page_obj.has_previous %}
+    <a class="btn" href="?page={{ page_obj.previous_page_number }}&{{ request.GET.urlencode }}">
+      Previous
+    </a>
+  {% endif %}
+
+  <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+  {% if page_obj.has_next %}
+    <a class="btn" href="?page={{ page_obj.next_page_number }}&{{ request.GET.urlencode }}">
+      Next
+    </a>
+  {% endif %}
+</div>
+
+<script src="{% static 'js/job_js/job.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Job Aggregator</title>
+
+  
+  <link rel="stylesheet" href="{% static 'accounts_css/register.css' %}">
+</head>
+
+<body>
+
+<div class="auth-container">
+  <div class="auth-card">
+
+    <div class="auth-header">
+      <h1>Create account</h1>
+      <button id="themeToggle">🌓</button>
+    </div>
+
+    <p class="subtitle">
+      Join thousands of professionals finding remote opportunities.
+    </p>
+
+    <form method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+
+      {{ form.as_p }}
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account?
+      <a href="{% url 'login' %}">Login</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="{% static 'js/accounts_js/register.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+:root {
+--bg: #f6f8fc;
+--card: #ffffff;
+--text: #0f172a;
+--muted: #64748b;
+--accent: #2563eb;
+--border: #e5e7eb;
+--error: #dc2626;
+}
+
+[data-theme="dark"] {
+--bg: #0b1120;
+--card: #111827;
+--text: #e5e7eb;
+--muted: #94a3b8;
+--accent: #38bdf8;
+--border: #1f2937;
+--error: #f87171;
+}
+
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+background: var(--bg);
+color: var(--text);
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.auth-container {
+width: 100%;
+max-width: 420px;
+padding: 2rem;
+}
+
+.auth-card {
+background: var(--card);
+border-radius: 16px;
+padding: 2rem;
+border: 1px solid var(--border);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.auth-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 1.5rem;
+}
+
+.auth-header h1 {
+font-size: 1.5rem;
+margin: 0;
+}
+
+#themeToggle {
+border: none;
+background: none;
+font-size: 1.1rem;
+cursor: pointer;
+color: var(--text);
+}
+
+.auth-card p.subtitle {
+color: var(--muted);
+font-size: 0.9rem;
+margin-bottom: 1.5rem;
+}
+
+.error-box {
+background: rgba(220, 38, 38, 0.1);
+color: var(--error);
+padding: 0.8rem;
+border-radius: 10px;
+margin-bottom: 1rem;
+font-size: 0.9rem;
+}
+
+label {
+display: block;
+font-size: 0.85rem;
+font-weight: 600;
+margin-bottom: 0.3rem;
+}
+
+input {
+width: 100%;
+padding: 0.6rem 0.7rem;
+border-radius: 10px;
+border: 1px solid var(--border);
+background: transparent;
+color: var(--text);
+margin-bottom: 1rem;
+font-size: 0.95rem;
+}
+
+input:focus {
+outline: none;
+border-color: var(--accent);
+}
+
+button {
+width: 100%;
+padding: 0.65rem;
+border-radius: 12px;
+border: none;
+background: var(--accent);
+color: white;
+font-weight: 600;
+font-size: 0.95rem;
+cursor: pointer;
+}
+
+button:hover {
+opacity: 0.9;
+}
+
+.auth-footer {
+text-align: center;
+margin-top: 1.2rem;
+font-size: 0.85rem;
+color: var(--muted);
+}
+
+.auth-footer a {
+color: var(--accent);
+text-decoration: none;
+font-weight: 600;
+}

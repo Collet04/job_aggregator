@@ -1,0 +1,73 @@
+:root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #212529;
+    --muted: #6c757d;
+    --primary: #4f46e5;
+    --border: #dee2e6;
+}
+
+[data-theme="dark"] {
+    --bg: #0f172a;
+    --card-bg: #020617;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --primary: #6366f1;
+    --border: #1e293b;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+h2, h4 {
+    font-weight: 700;
+}
+
+.form-control {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+@media (max-width: 768px) {
+    .card {
+        border-radius: 12px;
+    }
+}
